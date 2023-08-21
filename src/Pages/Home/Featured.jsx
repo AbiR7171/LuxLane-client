@@ -5,6 +5,7 @@ import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/pagination';
 import { FreeMode, Pagination } from 'swiper/modules';
+import { Icon } from '@iconify/react';
 
 const Featured = () => {
 
@@ -49,7 +50,21 @@ const Featured = () => {
 
        {
                 featured.map(feature => {
-                    return   <SwiperSlide>Slide 1</SwiperSlide>
+                    return   <SwiperSlide><div className="card w-96 h-[500px] bg-base-100 shadow-xl px-2 fontPrimary">
+                    <figure><img src={feature.img} alt="Shoes" /></figure>
+                    <div className="card-body">
+                      <h2 className="card-title">
+                        {feature.name}
+                        <div className="badge badge-secondary"> ${feature.price}</div>
+                      </h2>
+                      <p>Rating: {feature.ratings}</p>
+                      <p>Company: {feature.seller}</p>
+                      <div className="card-actions justify-end">
+                        <div className=' fontSize flex items-center gap-2 badge badge-outline p-3' > view details <Icon icon="clarity:details-solid" /></div> 
+                       
+                      </div>
+                    </div>
+                  </div></SwiperSlide>
                 })
        }
 
