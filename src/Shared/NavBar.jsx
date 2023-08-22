@@ -1,13 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { Icon } from '@iconify/react';
+import { Icon } from "@iconify/react";
+import { AuthContext } from "../Routes/AuthProvider";
 
 const NavBar = () => {
+  const { user, handleLogOut  } = useContext(AuthContext);
 
-    
-
-
-    
   return (
     <div>
       <div className="navbar bg-base-100 text-black font-serif px-8">
@@ -52,19 +50,17 @@ const NavBar = () => {
               </li>
             </ul>
           </div>
-          <a className="btn btn-ghost normal-case text-5xl logoFont ">LuxeLane</a>
+          <a className="btn btn-ghost normal-case text-5xl logoFont ">
+            LuxeLane
+          </a>
         </div>
         <div className="navbar-center hidden lg:flex fontPrimary  ">
           <ul className="menu menu-horizontal px-1 fontSize">
             <li className="fontSize">
-              <Link>
-              Home
-              </Link>
+              <Link>Home</Link>
             </li>
-            <li className="fontSize" >
-               <Link>
-                Product
-               </Link>
+            <li className="fontSize">
+              <Link>Product</Link>
             </li>
             <li className="fontSize">
               <a>Item 3</a>
@@ -72,24 +68,39 @@ const NavBar = () => {
           </ul>
         </div>
         <div className="navbar-end space-x-5 fontPrimary fontSize">
+          {user ? (
+            <div className="flex items-center gap-3">
+              <Link>
+                <p className="flex items-center">
+                  <Icon icon="mdi:cart" /> ($0)
+                </p>
+              </Link>
 
-         <Link >
-            <p className="flex items-center"><Icon icon="mdi:cart" /> ($0)</p>
-         </Link>
+              <Link>
+                <p className="flex items-center">
+                  {" "}
+                  <Icon icon="mdi:heart" /> (0)
+                </p>
+              </Link> 
+               <img onClick={handleLogOut}  src={user.photoURL} className="w-12 h-12 rounded-full" title={user.displayName} alt="" />
+            </div>
+          ) : (
+            <Link to="/signIn">
+              <p className="flex items-center uppercase">
+                {" "}
+                <Icon icon="iconamoon:profile" /> Login
+              </p>
+            </Link>
+          )}
+          <p>
+            {" "}
+            <Icon icon="material-symbols:search" />
+          </p>
 
-         <Link >
-            <p className="flex items-center"> <Icon icon="mdi:heart" /> (0)</p>
-         </Link>
-
-         <Link >
-            <p className="flex items-center uppercase"> <Icon icon="iconamoon:profile" /> Login</p>
-         </Link> 
-
-         <p> <Icon icon="material-symbols:search" /></p>
-
-         <p> <Icon icon="heroicons-solid:menu" /> </p>
-
-
+          <p>
+            {" "}
+            <Icon icon="heroicons-solid:menu" />{" "}
+          </p>
         </div>
       </div>
     </div>
