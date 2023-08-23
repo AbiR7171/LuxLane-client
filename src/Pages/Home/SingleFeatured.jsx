@@ -2,10 +2,27 @@ import React from "react";
 import Rating from "react-rating";
 import { useLoaderData } from "react-router-dom";
 import { Icon } from "@iconify/react";
+import axios from "axios";
 
 const SingleFeatured = () => {
   const SingleProduct = useLoaderData();
   console.log(SingleProduct);
+
+
+    const handleAddToCart = ()=>{
+       
+
+      
+           axios.post("http://localhost:5000/carts")
+           .then(res => {
+             console.log(res);
+           })
+           .catch(error =>{
+             console.log(error);
+           })
+
+    }
+
   return (
     <div className="mt-20 bg-stone-100 rounded-lg container mx-auto">
       {SingleProduct.map((product) => {

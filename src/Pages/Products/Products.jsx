@@ -31,6 +31,7 @@ const Products = () => {
       <Tab ><p className='rounded-lg flex justify-center items-center'>Cap</p></Tab>
       <Tab ><p className='rounded-lg flex justify-center items-center'>Earphones</p></Tab>
       <Tab ><p className='rounded-lg flex justify-center items-center'>Bottle</p></Tab>
+
       
     </TabList>
 
@@ -98,11 +99,11 @@ const Products = () => {
 
     </TabPanel>
     <TabPanel>
- 
+   
 
     <div className='grid lg:grid-cols-3 grid-cols-1 gap-4 mt-10'>
           {
-            boots.map(items => <ItemsCard items={items} key={items._id}/>)
+            bottles.map(items => <ItemsCard items={items} key={items._id}/>)
           }
        </div>
      
