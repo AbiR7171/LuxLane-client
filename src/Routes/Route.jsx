@@ -7,6 +7,7 @@ import SignIn from "../Authentication/SignIn";
 import PrivateRoute from "./PrivateRoute";
 import Products from "../Pages/Products/Products";
 import MyCart from "../Pages/Cart/MyCart";
+import CheckOut from "../Pages/Cart/CheckOut";
 
 const router = createBrowserRouter(
     [
@@ -40,6 +41,10 @@ const router = createBrowserRouter(
                 {
                     path:"/myCart",
                     element:<MyCart/>
+                },
+                {
+                    path:"/checkOut/:id",
+                    element:<CheckOut/>
                 }
             ]
         }

@@ -1,13 +1,16 @@
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import { Icon } from "@iconify/react";
 
 import ItemsCard from './ItemsCard';
 
 const Products = () => {
   const allProducts = useLoaderData()
   console.log(allProducts);
+
+  const navigate = useNavigate()
 
   const sneakerss = allProducts.filter(products => products.category === "Men's Sneaker")
   const pants = allProducts.filter(products =>  products.category === "Men's Pants")
@@ -19,8 +22,10 @@ const Products = () => {
   
   console.log(pants);
   return (
-    <div 
-      className='container mx-auto mt-10 bg-zinc-200 p-4 rounded-lg'
+  <div className='container mx-auto mt-10'>
+      <button onClick={()=>navigate(-1)} className="text-4xl py-10"><Icon icon="emojione-monotone:down-arrow" rotate={1} /></button>
+      <div 
+      className=' bg-zinc-200 px-4 rounded-lg'
     >
       <Tabs>
      <TabList className=" bg-black text-white p-2 rounded-lg  flex justify-around ">
@@ -113,6 +118,7 @@ const Products = () => {
    </Tabs>
       
     </div>
+  </div>
   );
 };
 

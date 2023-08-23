@@ -1,6 +1,6 @@
 import React, { useContext, useRef, useState } from "react";
 import Rating from "react-rating";
-import { useLoaderData } from "react-router-dom";
+import { Navigate, useLoaderData, useNavigate } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import axios from "axios";
 import { AuthContext } from "../../Routes/AuthProvider";
@@ -13,13 +13,20 @@ const SingleFeatured = () => {
            const SingleProduct = useLoaderData();
            console.log(SingleProduct);
 
+           const navigate = useNavigate()
+
            const [cart, refetch]=useCart()
 
        const[quantity, setQuantity]=useState(1)
-       const [ isDisable, setIsDisable]=useState(false);
+     
 
 
        const totalPrice = SingleProduct[0].price * quantity ;
+
+
+      //  const handleBack = ()=>{
+      //        navigate(-1)
+      //  }
 
      
 
@@ -97,7 +104,10 @@ const SingleFeatured = () => {
     }
 
   return (
-    <div className="mt-20 bg-stone-100 rounded-lg container mx-auto">
+    <div className="  container mx-auto"> 
+
+       <button onClick={()=>navigate(-1)} className="text-4xl py-10"><Icon icon="emojione-monotone:down-arrow" rotate={1} /></button>
+      <div className="mt-4 bg-stone-100 rounded-lg">
       {SingleProduct.map((product) => {
         return (
           <div className="flex  items-center fontPrimary gap-6 rounded-lg ">
@@ -170,6 +180,7 @@ const SingleFeatured = () => {
           </div>
         );
       })}
+    </div>
     </div>
   );
 };
