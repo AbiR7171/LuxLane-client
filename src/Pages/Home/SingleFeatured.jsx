@@ -1,19 +1,59 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import Rating from "react-rating";
 import { useLoaderData } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import axios from "axios";
+import { AuthContext } from "../../Routes/AuthProvider";
 
 const SingleFeatured = () => {
+
+  const {user}=useContext(AuthContext)
   const SingleProduct = useLoaderData();
   console.log(SingleProduct);
+
+       const[quantity, setQuantity]=useState(0)
+       const [ isDisable, setIsDisable]=useState(false);
+
+       const disable = quantity >=0;
+
+      
+
+
+       const handlePlusQuantity=()=>{
+
+               setQuantity(quantity + 1);
+       }
+
+       const handleMinusQunatity= ()=>{
+                    
+
+                   
+                     if(quantity > 0){
+                      setQuantity(quantity -1);
+                     }
+
+                    
+
+                     
+                      
+       }
+
+       
 
 
     const handleAddToCart = ()=>{
        
 
       
-           axios.post("http://localhost:5000/carts")
+           axios.post("http://localhost:5000/carts",
+           {
+                 userName: user.displayName ,
+                 Email : user.email,
+                 productName: SingleProduct.name,
+                 productImg: SingleProduct.img,
+                 seller: SingleProduct.seller,
+                 productId: SingleFeatured._id
+           })
            .then(res => {
              console.log(res);
            })
@@ -79,8 +119,19 @@ const SingleFeatured = () => {
                 Total Ratings: <span className="text-gray-600">{product.ratingsCount}</span>
               </p> 
 
-              <button className="btn bg-red-600 text-white">ADD TO CART <Icon icon="mdi:cart" className="text-2xl" /></button>
+             <div className="flex gap-2 items-center ">
 
+              <p className="flex items-center border-2  p-2">
+                 <span>Quantity</span>
+                   <button   onClick={handleMinusQunatity}>    <Icon icon="dashicons:arrow-up" rotate={3} /> </button>
+                  <span className="text-3xl">{quantity}</span>
+                  <Icon onClick={handlePlusQuantity} icon="dashicons:arrow-up" rotate={1} />
+                  
+                   </p>
+
+             <button onClick={handleAddToCart} className="btn bg-red-600 text-white">ADD TO CART <Icon icon="mdi:cart" className="text-2xl" /></button>
+
+             </div>
 
             </div>
           </div>
