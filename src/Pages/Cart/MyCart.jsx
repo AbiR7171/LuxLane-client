@@ -3,6 +3,7 @@ import useCart from "../../Hooks/useCart";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { Icon } from '@iconify/react';
 
 const MyCart = () => {
   const [cart, refetch] = useCart();
@@ -77,8 +78,8 @@ const MyCart = () => {
                 <td> ${c.totalPrice}</td>
                 <td> {c.seller}</td>
                
-                <td><button onClick={()=>handleDeleteItems(c._id)} className="btn bg-red-600 text-white ">Delete</button></td>
-                <td> <Link><button className="btn bg-orange-600 text-white ">CheckOut</button></Link></td>
+                <td className="flex items-center"><button onClick={()=>handleDeleteItems(c._id)} className="btn bg-red-600 text-white ">Delete <Icon icon="material-symbols:delete" rotate={0} /></button></td>
+                <td > <Link to={`/checkOut/${c._id}`}><button className="btn bg-orange-600 text-white mb-8"> <p>CheckOut </p> <Icon icon="jam:arrow-up" rotate={1} /></button></Link></td>
               </tr>
               })}
               

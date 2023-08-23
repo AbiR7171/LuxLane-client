@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import { AuthContext } from "../Routes/AuthProvider";
@@ -6,6 +6,7 @@ import useCart from "../Hooks/useCart";
 
 const NavBar = () => {
   const { user, handleLogOut  } = useContext(AuthContext);
+  const [hide, setHide]=useState(true)
 
   const[cart, refetch]=useCart();
 
@@ -67,9 +68,6 @@ const NavBar = () => {
             <li className="fontSize">
               <Link to="/products">Product</Link>
             </li>
-            <li className="fontSize">
-              <a>Item 3</a>
-            </li>
           </ul>
         </div>
         <div className="navbar-end space-x-5 fontPrimary fontSize">
@@ -87,7 +85,7 @@ const NavBar = () => {
                   <Icon icon="mdi:heart" /> (0)
                 </p>
               </Link> 
-               <img onClick={handleLogOut}  src={user.photoURL} className="w-12 h-12 rounded-full" title={user.displayName} alt="" />
+               <img   src={user.photoURL} className="w-12 h-12 rounded-full" title={user.displayName} alt="" />
             </div>
           ) : (
             <Link to="/signIn">
@@ -97,15 +95,35 @@ const NavBar = () => {
               </p>
             </Link>
           )}
-          <p>
+          {/* <p>
             {" "}
             <Icon icon="material-symbols:search" />
-          </p>
+          </p> */}
 
           <p>
             {" "}
-            <Icon icon="heroicons-solid:menu" />{" "}
-          </p>
+            <Icon onClick={()=> setHide(!hide)} icon="heroicons-solid:menu" />{" "}
+          </p> 
+
+           <div className={`bg-black w-64 mainFont rounded-xl p-6 mt-44 absolute z-20  text-white ${hide ? " -right-96 duration-500" :  " duration-500 right-0  "} `}>
+
+
+           <Link>
+            
+            <p className="flex items-center justify-center gap-2 text-2xl">Dashboard <Icon icon="material-symbols:space-dashboard" /></p> 
+            </Link>
+
+            <hr  className="mt-3"/>
+
+            <Link>
+            <p onClick={handleLogOut} className="flex items-center justify-center gap-2 text-2xl">LogOut <Icon icon="solar:logout-3-bold-duotone" rotate={2} /></p> 
+            </Link>
+            
+
+           
+
+
+           </div>
         </div>
       </div>
     </div>
