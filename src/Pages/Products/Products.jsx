@@ -3,6 +3,8 @@ import { useLoaderData } from 'react-router-dom';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 
+import ItemsCard from './ItemsCard';
+
 const Products = () => {
   const allProducts = useLoaderData()
   console.log(allProducts);
@@ -22,7 +24,6 @@ const Products = () => {
     >
       <Tabs>
      <TabList className=" bg-black text-white p-2 rounded-lg  flex justify-around ">
-      <Tab ><p className='rounded-lg flex justify-center items-center '></p></Tab>
       <Tab ><p className='rounded-lg flex justify-center items-center'>Men's Sneaker</p></Tab>
       <Tab ><p className='rounded-lg flex justify-center items-center'>Men's Pants</p></Tab>
       <Tab ><p className='rounded-lg flex justify-center items-center'>Men's Boot</p></Tab>
@@ -34,12 +35,81 @@ const Products = () => {
     </TabList>
 
     <TabPanel>
-      <h2>Any content 1</h2>
+       <div className='grid lg:grid-cols-3 grid-cols-1 gap-4 mt-10'>
+       {
+            sneakerss.map(items => <ItemsCard items={items} key={items._id}/>)
+          }
+       </div>
+    </TabPanel>
+
+    <TabPanel>
+ 
+
+    <div className='grid lg:grid-cols-3 grid-cols-1 gap-4 mt-10'>
+          {
+            pants.map(items => <ItemsCard items={items} key={items._id}/>)
+          }
+       </div>
+     
+
     </TabPanel>
     <TabPanel>
-      <h2>Any content 2</h2>
+ 
+
+    <div className='grid lg:grid-cols-3 grid-cols-1 gap-4 mt-10'>
+          {
+            boots.map(items => <ItemsCard items={items} key={items._id}/>)
+          }
+       </div>
+     
+
     </TabPanel>
-  </Tabs>
+    <TabPanel>
+ 
+
+    <div className='grid lg:grid-cols-3 grid-cols-1 gap-4 mt-10'>
+          {
+            bags.map(items => <ItemsCard items={items} key={items._id}/>)
+          }
+       </div>
+     
+
+    </TabPanel>
+    <TabPanel>
+ 
+
+    <div className='grid lg:grid-cols-3 grid-cols-1 gap-4 mt-10'>
+          {
+            caps.map(items => <ItemsCard items={items} key={items._id}/>)
+          }
+       </div>
+     
+
+    </TabPanel>
+    <TabPanel>
+ 
+
+    <div className='grid lg:grid-cols-3 grid-cols-1 gap-4 mt-10'>
+          {
+            earphones.map(items => <ItemsCard items={items} key={items._id}/>)
+          }
+       </div>
+     
+
+    </TabPanel>
+    <TabPanel>
+ 
+
+    <div className='grid lg:grid-cols-3 grid-cols-1 gap-4 mt-10'>
+          {
+            boots.map(items => <ItemsCard items={items} key={items._id}/>)
+          }
+       </div>
+     
+
+    </TabPanel>
+
+   </Tabs>
       
     </div>
   );
