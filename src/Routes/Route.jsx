@@ -5,6 +5,7 @@ import SingleFeatured from "../Pages/Home/SingleFeatured";
 import SignUP from "../Authentication/SignUP";
 import SignIn from "../Authentication/SignIn";
 import PrivateRoute from "./PrivateRoute";
+import Products from "../Pages/Products/Products";
 
 const router = createBrowserRouter(
     [
@@ -29,6 +30,11 @@ const router = createBrowserRouter(
                 {
                     path:"/signIn",
                     element:<SignIn/>
+                },
+                {
+                    path:"/products",
+                    element:<Products/>,
+                    loader:()=> fetch("http://localhost:5000/products")
                 }
             ]
         }
