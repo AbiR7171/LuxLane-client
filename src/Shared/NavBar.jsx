@@ -2,9 +2,14 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import { AuthContext } from "../Routes/AuthProvider";
+import useCart from "../Hooks/useCart";
 
 const NavBar = () => {
   const { user, handleLogOut  } = useContext(AuthContext);
+
+  const[cart, refetch]=useCart();
+
+  console.log(cart);
 
   return (
     <div>
@@ -70,9 +75,9 @@ const NavBar = () => {
         <div className="navbar-end space-x-5 fontPrimary fontSize">
           {user ? (
             <div className="flex items-center gap-3">
-              <Link>
+              <Link to="/myCart">
                 <p className="flex items-center">
-                  <Icon icon="mdi:cart" /> ($0)
+                  <Icon icon="mdi:cart" /> ({cart.length || 0})
                 </p>
               </Link>
 

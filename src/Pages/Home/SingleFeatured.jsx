@@ -1,20 +1,38 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import Rating from "react-rating";
 import { useLoaderData } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import axios from "axios";
 import { AuthContext } from "../../Routes/AuthProvider";
+import Swal from "sweetalert2";
+import useCart from "../../Hooks/useCart";
 
 const SingleFeatured = () => {
 
-  const {user}=useContext(AuthContext)
-  const SingleProduct = useLoaderData();
-  console.log(SingleProduct);
+          const {user}=useContext(AuthContext)
+           const SingleProduct = useLoaderData();
+           console.log(SingleProduct);
 
-       const[quantity, setQuantity]=useState(0)
+           const [cart, refetch]=useCart()
+
+       const[quantity, setQuantity]=useState(1)
        const [ isDisable, setIsDisable]=useState(false);
 
-       const disable = quantity >=0;
+
+       const totalPrice = SingleProduct[0].price * quantity ;
+
+     
+
+      //  console.log(quantity);
+
+      //  console.log(user);
+
+
+      //  const quantityRef = useRef(0) 
+       
+      //  const quantityValue = quantityRef.current.textContent;
+
+      //  console.log(quantityValue);
 
       
 
@@ -28,7 +46,7 @@ const SingleFeatured = () => {
                     
 
                    
-                     if(quantity > 0){
+                     if(quantity > 1){
                       setQuantity(quantity -1);
                      }
 
@@ -47,15 +65,30 @@ const SingleFeatured = () => {
       
            axios.post("http://localhost:5000/carts",
            {
-                 userName: user.displayName ,
-                 Email : user.email,
-                 productName: SingleProduct.name,
-                 productImg: SingleProduct.img,
-                 seller: SingleProduct.seller,
-                 productId: SingleFeatured._id
+                 userName: user.displayName,
+                 email : user.email,
+                 productName: SingleProduct[0].name,
+                 productImg: SingleProduct[0].img,
+                 seller: SingleProduct[0].seller,
+                 productId: SingleProduct[0]._id,
+                 quantity: quantity,
+                 price: SingleProduct[0].price,
+                 stock: SingleProduct[0].stock,
+                 totalPrice: totalPrice
            })
            .then(res => {
+
              console.log(res);
+              if(res.data.insertedId){
+                refetch()
+                Swal.fire({
+                  position: 'top-center',
+                  icon: 'success',
+                  title: 'Item added to Cart',
+                  showConfirmButton: false,
+                  timer: 1500
+                })
+              }
            })
            .catch(error =>{
              console.log(error);
@@ -124,7 +157,7 @@ const SingleFeatured = () => {
               <p className="flex items-center border-2  p-2">
                  <span>Quantity</span>
                    <button   onClick={handleMinusQunatity}>    <Icon icon="dashicons:arrow-up" rotate={3} /> </button>
-                  <span className="text-3xl">{quantity}</span>
+                  <span  className="text-3xl">{quantity}</span>
                   <Icon onClick={handlePlusQuantity} icon="dashicons:arrow-up" rotate={1} />
                   
                    </p>

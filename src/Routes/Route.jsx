@@ -6,6 +6,7 @@ import SignUP from "../Authentication/SignUP";
 import SignIn from "../Authentication/SignIn";
 import PrivateRoute from "./PrivateRoute";
 import Products from "../Pages/Products/Products";
+import MyCart from "../Pages/Cart/MyCart";
 
 const router = createBrowserRouter(
     [
@@ -35,6 +36,10 @@ const router = createBrowserRouter(
                     path:"/products",
                     element:<Products/>,
                     loader:()=> fetch("http://localhost:5000/products")
+                },
+                {
+                    path:"/myCart",
+                    element:<MyCart/>
                 }
             ]
         }
