@@ -3,12 +3,15 @@ import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import { AuthContext } from "../Routes/AuthProvider";
 import useCart from "../Hooks/useCart";
+import useAdmin from "../Hooks/useAdmin";
 
 const NavBar = () => {
   const { user, handleLogOut  } = useContext(AuthContext);
   const [hide, setHide]=useState(true)
 
   const[cart, refetch]=useCart();
+  const[isAdmin]=useAdmin()
+  console.log(isAdmin);
 
   console.log(cart);
 
@@ -108,10 +111,12 @@ const NavBar = () => {
            <div className={`bg-black w-64 mainFont rounded-xl p-6 mt-44 absolute z-20  text-white ${hide ? " -right-96 duration-500" :  " duration-500 right-0  "} `}>
 
 
-           <Link>
+          {
+            isAdmin &&  <Link to="/dashboard/home">
             
             <p className="flex items-center justify-center gap-2 text-2xl">Dashboard <Icon icon="material-symbols:space-dashboard" /></p> 
             </Link>
+          }
 
             <hr  className="mt-3"/>
 

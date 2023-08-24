@@ -8,6 +8,9 @@ import PrivateRoute from "./PrivateRoute";
 import Products from "../Pages/Products/Products";
 import MyCart from "../Pages/Cart/MyCart";
 import CheckOut from "../Pages/Cart/CheckOut";
+import DashBoard from "../Layouts/DashBoard";
+import AdminHome from "../Pages/DashBoard/AdminHome";
+import AllUser from "../Pages/DashBoard/AllUser";
 
 const router = createBrowserRouter(
     [
@@ -47,6 +50,23 @@ const router = createBrowserRouter(
                     element:<CheckOut/>,
                     loader:({params})=> fetch(`http://localhost:5000/carts/${params.id}`)
                 }
+            ]
+        },
+        {
+            path:"/dashboard",
+            element:<DashBoard/>,
+            children:[
+                 {
+                    path:"/dashboard/home",
+                    element:<AdminHome/>,
+                    loader:()=> fetch("http://localhost:5000/products")
+
+                 },
+                 {
+                    path:"/dashboard/allUser",
+                    element: <AllUser/>,
+                    loader:()=> fetch("http://localhost:5000/users")
+                 }
             ]
         }
     ]
