@@ -27,8 +27,9 @@ const DashBoard = () => {
        <li className='text-3xl logoFont text-center mb-5'> LuxeLane</li>
       <li className='border rounded-lg bg-gray-500 text-white'><Link to="/dashboard/home">Home <Icon icon="carbon:home" /></Link></li>
       <li className='border rounded-lg bg-gray-500 text-white'><Link to="/dashboard/allUser"> Manage User <Icon icon="mdi:user" /></Link></li>
-      <li className='border rounded-lg bg-gray-500 text-white'><a> Manage Product <Icon icon="fluent-mdl2:product" /></a></li>
-      <li className='border rounded-lg bg-gray-500 text-white'><a> Add Product <Icon icon="zondicons:add-solid" /></a></li>
+      <li className='border rounded-lg bg-gray-500 text-white'><Link to="/dashboard/addProduct"> Add Product <Icon icon="zondicons:add-solid" /></Link></li>
+      <li className='border rounded-lg bg-gray-500 text-white'><Link to="/dashboard/manageProduct"> Manage Product <Icon icon="fluent-mdl2:product" /></Link></li>
+
       <li className='border rounded-lg bg-gray-500 text-white'><a> Order List <Icon icon="material-symbols:order-play" /></a></li>
       <hr  className="divider"/>
       <li className='border rounded-lg bg-gray-500 text-white'><Link to="/"> Home <Icon icon="carbon:home" /></Link></li>

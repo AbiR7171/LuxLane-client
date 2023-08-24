@@ -11,6 +11,9 @@ import CheckOut from "../Pages/Cart/CheckOut";
 import DashBoard from "../Layouts/DashBoard";
 import AdminHome from "../Pages/DashBoard/AdminHome";
 import AllUser from "../Pages/DashBoard/AllUser";
+import AdminRoute from "./AdminRoute";
+import AddProduct from "../Pages/DashBoard/AddProduct";
+import ManageProduct from "../Pages/DashBoard/ManageProduct";
 
 const router = createBrowserRouter(
     [
@@ -54,7 +57,7 @@ const router = createBrowserRouter(
         },
         {
             path:"/dashboard",
-            element:<DashBoard/>,
+            element:<AdminRoute><DashBoard/></AdminRoute>,
             children:[
                  {
                     path:"/dashboard/home",
@@ -66,6 +69,14 @@ const router = createBrowserRouter(
                     path:"/dashboard/allUser",
                     element: <AllUser/>,
                     loader:()=> fetch("http://localhost:5000/users")
+                 },
+                 {
+                    path:"/dashboard/addProduct",
+                    element:<AddProduct/>
+                 },
+                 {
+                    path:"/dashboard/manageProduct",
+                    element:<ManageProduct/>
                  }
             ]
         }
