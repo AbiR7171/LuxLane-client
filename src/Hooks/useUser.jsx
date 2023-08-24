@@ -6,6 +6,7 @@ const useUser = () => {
 
    
           const{loading}=useContext(AuthContext)
+          const token = localStorage.getItem("access-token")
   
 
 
@@ -14,7 +15,12 @@ const useUser = () => {
          enabled:!loading,
          queryFn: async()=> {
                
-                const res = await fetch(`http://localhost:5000/users`)
+                const res = await fetch(`http://localhost:5000/users`,
+                {
+                    headers:{
+                        authorization: `bearer ${token}`
+                    }
+                })
                 return res.json();
          }
     })

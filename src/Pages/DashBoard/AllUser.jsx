@@ -9,6 +9,7 @@ const AllUser = () => {
 
   
          const [users, refetch]=useUser()
+         console.log(users);
         
 
          const handleAdmin = user=>{

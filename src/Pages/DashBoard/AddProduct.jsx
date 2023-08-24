@@ -27,7 +27,7 @@ const AddProduct = () => {
                      console.log(email, productName, seller, price, category, ratings, ratingsCount,  img, shipping, stock);
 
                      axios.post("http://localhost:5000/products", {
-                        email, productName, seller, price, category, ratings, ratingsCount, img,
+                        email, name, seller, price, category, ratings, ratingsCount, img,
                         shipping, stock
                      })
                      .then(data =>{

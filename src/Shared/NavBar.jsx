@@ -108,7 +108,7 @@ const NavBar = () => {
             <Icon onClick={()=> setHide(!hide)} icon="heroicons-solid:menu" />{" "}
           </p> 
 
-           <div className={`bg-black w-64 mainFont rounded-xl p-6 mt-44 absolute z-20  text-white ${hide ? " -right-96 duration-500" :  " duration-500 right-0  "} `}>
+           <div className={`bg-black w-64 mainFont rounded-xl p-6 mt-44 absolute z-20  text-white ${hide ? " hidden -right-96 duration-500" :  " duration-500 right-0  "} `}>
 
 
           {
